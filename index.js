@@ -227,8 +227,6 @@ AirVisualNodeAccessory.prototype = {
 	.getCharacteristic(Characteristic.CurrentTemperature)
 	.on('get', this.getCurrentTemperature.bind(this));
 
-    console.log(this.humidityService);
-    
     return [this.informationService, this.airqualityService, this.temperatureService, this.carbondioxideService, this.humidityService];
   }
 };

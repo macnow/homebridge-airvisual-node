@@ -1,6 +1,6 @@
 {
   "name": "homebridge-airvisual-node",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "AirVisual Node plugin for Homebridge",
   "author": "Maciej Nowakowski",
   "license": "MIT",
