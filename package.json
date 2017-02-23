@@ -1,0 +1,39 @@
+{
+  "name": "homebridge-airvisual-node",
+  "version": "1.0.0",
+  "description": "AirVisual Node plugin for Homebridge",
+  "author": "Maciej Nowakowski",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/macnow/homebridge-airvisual-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/macnow/homebridge-airvisual-node/issues",
+    "email": "macnow@gmail.com"
+  },
+  "keywords": [
+    "homebridge-plugin",
+    "homebridge",
+    "airvisual",
+    "airquality",
+    "home"
+  ],
+  "engines": {
+    "node": ">=4.4.0",
+    "homebridge": ">=0.3.0",
+    "hap-nodejs": ">=0.4.21"
+  },
+  "dependencies": {
+    "smb2": ">=0.2.7"
+  },
+  "devDependencies": {
+    "semistandard": "^9.0.0"
+  },
+  "scripts": {
+    "debug": "DEBUG=* homebridge --debug --plugin-path .",
+    "test": "./node_modules/.bin/semistandard",
+    "preversion": "npm test",
+    "postversion": "git push && git push --tags"
+  }
+}
