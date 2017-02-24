@@ -1,6 +1,6 @@
 {
   "name": "homebridge-airvisual-node",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "AirVisual Node plugin for Homebridge",
   "author": "Maciej Nowakowski",
   "license": "MIT",
@@ -22,10 +22,10 @@
   "engines": {
     "node": ">=4.4.0",
     "homebridge": ">=0.3.0",
-    "hap-nodejs": ">=0.4.21"
   },
   "dependencies": {
     "smb2": ">=0.2.7"
+    "hap-nodejs": ">=0.4.21"
   },
   "devDependencies": {
     "semistandard": "^9.0.0"
