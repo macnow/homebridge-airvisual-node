@@ -1,7 +1,8 @@
 
 var Service;
 var Characteristic;
-var SMB2 = require("smb2");
+//var SMB2 = require("smb2");
+var exec = require("child_process").exec;
 
 module.exports = function(homebridge){
 	Service = homebridge.hap.Service;
@@ -58,21 +59,31 @@ AirVisualNodeAccessory.prototype = {
   refresh: function() {
     var that = this;
 
+/*
     var smb2Client = new SMB2({
       share: '\\\\'+ that.ip + '\\airvisual',
       domain: '',
       username: that.user,
       password: that.pass
     });
+*/
 
     this.log ("Refreshing values...");
 
+/*
     smb2Client.readFile('latest_config_measurements.json', function(err, data){
       if(err) throw err;
       that.airdata = JSON.parse(data);
     });
     
     smb2Client.close();
+*/
+
+    // workaround - smb2 module doesn't work with node :/
+
+    exec('smbget -q -O -u ' + that.user + ' -p ' + that.pass + ' smb://' + that.ip + '/airvisual/latest_config_measurements.json', (error, stdout, stderr) => {
+      that.airdata = JSON.parse(stdout);
+    });
 
     if(that.airdata.measurements) {
       if(that.pm25 != that.airdata.measurements.pm25_ugm3) {
@@ -132,6 +143,12 @@ AirVisualNodeAccessory.prototype = {
     var that = this;
     // 1 = F and 0 = C
     callback (null, 0);
+  },  
+
+  getAirParticulateSize: function (callback) {
+    var that = this;
+    that.log ("getting AirParticulateSize");
+    callback(null, 0);
   },  
 
   getPM25Density: function (callback) {
@@ -214,6 +231,15 @@ AirVisualNodeAccessory.prototype = {
     this.airqualityService
          .getCharacteristic(Characteristic.CarbonDioxideLevel)
          .on('get', this.getCarbonDioxide.bind(this));
+
+console.log(this.airqualityService);
+    this.airqualityService
+         .getCharacteristic(Characteristic.AirParticulateDensity)
+         .on('get', this.getPM25Density.bind(this));
+
+    this.airqualityService
+         .getCharacteristic(Characteristic.AirParticulateSize)
+         .on('get', this.getAirParticulateSize.bind(this));
 
     this.carbondioxideService
          .getCharacteristic(Characteristic.CarbonDioxideDetected)
