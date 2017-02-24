@@ -1,6 +1,6 @@
 # homebridge-airvisual-node
 
-AirVisual Node plugin for [Homebridge](https://github.com/nfarina/homebridge).
+[AirVisual Node](https://airvisual.com/node) plugin for [Homebridge](https://github.com/nfarina/homebridge).
 
 # Installation
 
