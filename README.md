@@ -28,3 +28,6 @@
         }
 ],
 ```
+
+## Workaround
+smbclient package is required. `sudo apt-get install smbclient`
