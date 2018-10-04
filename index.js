@@ -81,8 +81,8 @@ AirVisualNodeAccessory.prototype = {
 
     // workaround - smb2 module doesn't work with node :/
 
-    exec('smbget -q -O -u ' + that.user + ' -p ' + that.pass + ' smb://' + that.ip + '/airvisual/latest_config_measurements.json', (error, stdout, stderr) => {
-      that.airdata = JSON.parse(stdout);
+    exec('smbget -q -O -U ' + that.user + '%' + that.pass + ' smb://' + that.ip + '/airvisual/latest_config_measurements.json', (error, stdout, stderr) => {
+		that.airdata = JSON.parse(stdout);
     });
 
     if(that.airdata.measurements) {
